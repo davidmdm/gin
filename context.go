@@ -19,9 +19,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/davidmdm/gin/binding"
+	"github.com/davidmdm/gin/render"
 	"github.com/gin-contrib/sse"
-	"github.com/gin-gonic/gin/binding"
-	"github.com/gin-gonic/gin/render"
 )
 
 // Content-Type MIME of the most common data formats.
@@ -603,7 +603,7 @@ func (c *Context) SaveUploadedFile(file *multipart.FileHeader, dst string) error
 	}
 	defer src.Close()
 
-	if err = os.MkdirAll(filepath.Dir(dst), 0750); err != nil {
+	if err = os.MkdirAll(filepath.Dir(dst), 0o750); err != nil {
 		return err
 	}
 
